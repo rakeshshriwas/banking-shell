@@ -1,4 +1,9 @@
+// {
+//   "loan-mfe": "http://localhost:4201/remoteEntry.json",
+//   "insurance-mfe": "http://localhost:4202/remoteEntry.json"
+// }
+
 {
-  "loan-mfe": "http://localhost:4201/remoteEntry.json",
-  "insurance-mfe": "http://localhost:4202/remoteEntry.json"
+  "loan-mfe": "https://insu-mfe.netlify.app/remoteEntry.json",
+  "insurance-mfe": "https://loan-mfe.netlify.app/remoteEntry.json"
 }

@@ -1,2 +1,0 @@
-[build]
-  command = "cp public/federation.manifest.prod.json public/federation.manifest.json && ng build --configuration production"

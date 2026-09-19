@@ -79,7 +79,20 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "assets": [
+                {
+                  "glob": "federation.manifest.prod.json",
+                  "input": "public/",
+                  "output": "/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "public/",
+                  "ignore": ["federation.manifest.json"],
+                  "output": "/"
+                }
+              ]
             },
             "development": {
               "optimization": false,

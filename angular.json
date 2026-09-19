@@ -21,7 +21,8 @@
           "builder": "@angular-architects/native-federation:build",
           "options": {
             "cacheExternalArtifacts": true,
-            "tsConfig": "tsconfig.federation.json"
+            "tsConfig": "tsconfig.federation.json",
+            "outputPath": "dist/banking-shell"
           },
           "configurations": {
             "production": {

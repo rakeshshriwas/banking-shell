@@ -32,10 +32,7 @@
               "dev": true
             }
           },
-          "defaultConfiguration": "production",
-          "outputPath": {
-            "base": "dist/banking-shell"
-          }
+          "defaultConfiguration": "production"
         }
       },
       "serve": {

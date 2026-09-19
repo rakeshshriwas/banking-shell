@@ -1,0 +1,4 @@
+{
+  "loan-mfe": "https://insu-mfe.netlify.app/remoteEntry.json",
+  "insurance-mfe": "https://loan-mfe.netlify.app/remoteEntry.json"
+}

@@ -56,30 +56,12 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+            "assets": ["public"],
             "styles": ["src/styles.scss"],
             "polyfills": ["es-module-shims"]
           },
           "configurations": {
             "production": {
-              "assets": [
-                {
-                  "glob": "federation.manifest.prod.json",
-                  "input": "public/",
-                  "output": "/"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "public/",
-                  "ignore": ["federation.manifest.json"],
-                  "output": "/"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",

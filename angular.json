@@ -33,75 +33,75 @@
             }
           },
           "defaultConfiguration": "production"
-        }
-      },
-      "serve": {
-        "builder": "@angular-architects/native-federation:build",
-        "options": {
-          "target": "banking-shell:serve-original:development",
-          "tsConfig": "tsconfig.federation.json",
-          "rebuildDelay": 500,
-          "cacheExternalArtifacts": true,
-          "dev": true,
-          "devServer": true,
-          "port": 0
-        }
-      },
-      "test": {
-        "builder": "@angular/build:unit-test"
-      },
-      "esbuild": {
-        "builder": "@angular/build:application",
-        "options": {
-          "browser": "src/main.ts",
-          "tsConfig": "tsconfig.app.json",
-          "inlineStyleLanguage": "scss",
-          "assets": [
-            {
-              "glob": "**/*",
-              "input": "public"
-            }
-          ],
-          "styles": ["src/styles.scss"],
-          "polyfills": ["es-module-shims"]
         },
-        "configurations": {
-          "production": {
-            "budgets": [
+        "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "banking-shell:serve-original:development",
+            "tsConfig": "tsconfig.federation.json",
+            "rebuildDelay": 500,
+            "cacheExternalArtifacts": true,
+            "dev": true,
+            "devServer": true,
+            "port": 0
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "esbuild": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
               {
-                "type": "initial",
-                "maximumWarning": "500kB",
-                "maximumError": "1MB"
-              },
-              {
-                "type": "anyComponentStyle",
-                "maximumWarning": "4kB",
-                "maximumError": "8kB"
+                "glob": "**/*",
+                "input": "public"
               }
             ],
-            "outputHashing": "all"
+            "styles": ["src/styles.scss"],
+            "polyfills": ["es-module-shims"]
           },
-          "development": {
-            "optimization": false,
-            "extractLicenses": false,
-            "sourceMap": true
-          }
-        },
-        "defaultConfiguration": "production"
-      },
-      "serve-original": {
-        "builder": "@angular/build:dev-server",
-        "configurations": {
-          "production": {
-            "buildTarget": "banking-shell:esbuild:production"
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
           },
-          "development": {
-            "buildTarget": "banking-shell:esbuild:development"
-          }
+          "defaultConfiguration": "production"
         },
-        "defaultConfiguration": "development",
-        "options": {
-          "port": 4200
+        "serve-original": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "banking-shell:esbuild:production"
+            },
+            "development": {
+              "buildTarget": "banking-shell:esbuild:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200
+          }
         }
       }
     }

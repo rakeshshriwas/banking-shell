@@ -59,8 +59,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/refirects"
+              }
             ],
             "styles": ["src/styles.scss"],
             "polyfills": ["es-module-shims"]

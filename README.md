@@ -1,59 +1,54 @@
-# BankingShell
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
-
-## Development server
-
-To start a local development server, run:
-
 ```bash
-ng serve
+ng new banking-mfe --create-application=false  
+
+ng g application bank-shall --routing --style=scss --standalone
+ng g application insurance-mfe --routing --style=scss --standalone
+ng g application bank-mfe --routing --style=scss --standalone
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Intall Native Federation in the shell application using the following command
 
 ```bash
-ng generate component component-name
+npm install -D @angular-architects/native-federation
+
+ng g @angular-architects/native-federation:init --project bank-shell --port 4200 --type dynamic-host
+ng g @angular-architects/native-federation:init --project insurance-mfe --port 42001 --type remote  
+ng g @angular-architects/native-federation:init --project loan-mfe --port 42001 --type remote
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## create route for expose federation.config.mjs in the remote application and add the following code
 
 ```bash
-ng generate --help
+exposes: {
+    './Component': './projects/loan-mfe/src/app/app.ts',
+    './Routes': './projects/loan-mfe/src/app/app.routes.ts',
+  },
+
+  exposes: {
+    './Component': './projects/insurance-mfe/src/app/app.ts',
+    './Routes': './projects/insurance-mfe/src/app/app.routes.ts',
+  },
 ```
-
-## Building
-
-To build the project run:
+## Edit generated federation.mainfest.json in bank-shall
 
 ```bash
-ng build
+{
+  "loanMfe": "http://localhost:42001/remoteEntry.json",
+  "insuranceMfe": "http://localhost:42002/remoteEntry.json"
+}
+
+export const routes: Routes = [
+  {
+    path: 'loans',
+    loadChildren: () => loadRemoteModule('loan-mfe', './Routes').then((m) => m.routes),
+  },
+  {
+    path: 'insurance',
+    loadChildren: () => loadRemoteModule('insurance-mfe', './Routes').then((m) => m.routes),
+  },
+];
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Run All Projects using the following command
+ng serve bank-shall
+ng serve loan-mfe
+ng serve insurance-mfe
